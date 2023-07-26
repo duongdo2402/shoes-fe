@@ -40,7 +40,24 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {loading ? (
+                <Routes>
+                        {(userInfor.role === 1 ? routerAdmin : router).map((route, index) => {
+                            const Page = route.component
+                            let Layout = DefaultLayout
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <Layout>
+                                            <Page />
+                                        </Layout>
+                                    }
+                                />
+                            )
+                        })}
+                    </Routes>
+                {/* {loading ? (
                     <Loading />
                 ) : (
                     <Routes>
@@ -60,7 +77,7 @@ function App() {
                             )
                         })}
                     </Routes>
-                )}
+                )} */}
             </div>
         </Router>
     )
